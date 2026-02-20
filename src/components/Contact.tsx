@@ -1,9 +1,52 @@
+"use client";
+
+import { useState } from "react";
+
 const PHONE = "0721234567";
 const WHATSAPP_NUMBER = "31612345678";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 const TEL_URL = `tel:+31${PHONE.replace(/^0/, "")}`;
 
+const BEHANDELINGEN = [
+  { value: "", label: "Selecteer behandeling" },
+  { value: "knippen-wassen", label: "Knippen & wassen" },
+  { value: "knippen-kort", label: "Knippen (kort)" },
+  { value: "baard", label: "Baard verzorgen" },
+  { value: "trimmen", label: "Trimmen" },
+  { value: "epileren-touw", label: "Epileren met touw" },
+  { value: "knippen-baard", label: "Knippen + baard" },
+] as const;
+
+const DAGEN = [
+  { value: "", label: "Geen voorkeur" },
+  { value: "ma", label: "Maandag" },
+  { value: "di", label: "Dinsdag" },
+  { value: "wo", label: "Woensdag" },
+  { value: "do", label: "Donderdag" },
+  { value: "vr", label: "Vrijdag" },
+  { value: "za", label: "Zaterdag" },
+] as const;
+
+const FORM_INPUT_CLASSES =
+  "mt-2 w-full rounded-md border border-neutral-700 bg-neutral-900/80 px-4 py-3.5 text-base text-white placeholder-neutral-500 transition-colors focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500 disabled:opacity-50 min-h-[48px]";
+
 export function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+
+    // Simuleer verzending — vervang met Formspree/API: fetch(url, { method: "POST", body: new FormData(form) })
+    await new Promise((r) => setTimeout(r, 800));
+    setSubmitted(true);
+    form.reset();
+    setIsSubmitting(false);
+  };
+
   return (
     <>
       <section
@@ -11,35 +54,160 @@ export function Contact() {
         className="border-t border-neutral-800/80 px-6 py-20 sm:py-24 md:px-12 lg:px-20 lg:py-32"
         aria-labelledby="contact-heading"
       >
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            id="contact-heading"
-            className="text-3xl font-medium tracking-tight text-white sm:text-4xl lg:text-[2.5rem]"
-          >
-            Contact & afspraak
-          </h2>
-          <p className="mt-6 text-neutral-400">
-            Bel of app. We helpen je graag.
-          </p>
-          {/* Primary: WhatsApp. Secondary: Bellen as subtle text link. Mobile: stacked, thumb reach. */}
-          <div className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-[#25D366] px-8 py-3.5 text-base font-medium text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-neutral-950"
+        <div className="mx-auto max-w-xl lg:max-w-2xl">
+          <header className="text-center">
+            <h2
+              id="contact-heading"
+              className="text-3xl font-medium tracking-tight text-white sm:text-4xl lg:text-[2.5rem]"
             >
-              WhatsApp
-            </a>
-            <a
-              href={TEL_URL}
-              className="group inline-flex items-baseline text-base font-medium text-neutral-400 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-neutral-950"
+              Contact & afspraak
+            </h2>
+            <p className="mt-6 text-neutral-400">
+              Plan een bezoek of stel een vraag. We reageren binnen 24 uur.
+            </p>
+          </header>
+
+          {submitted ? (
+            <div className="mt-14 rounded-lg border border-neutral-800 bg-neutral-900/50 px-6 py-12 text-center">
+              <p className="text-lg font-medium text-white">
+                Bedankt voor je bericht.
+              </p>
+              <p className="mt-2 text-neutral-400">
+                We nemen zo snel mogelijk contact op.
+              </p>
+              <button
+                type="button"
+                onClick={() => setSubmitted(false)}
+                className="mt-8 text-sm font-medium text-neutral-400 underline underline-offset-2 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-neutral-950"
+              >
+                Nog een bericht sturen
+              </button>
+            </div>
+          ) : (
+            <form
+              onSubmit={handleSubmit}
+              className="mt-14 space-y-6 sm:space-y-8"
+              noValidate
             >
-              <span className="border-b border-neutral-500 pb-0.5 transition-colors group-hover:border-white">
-                Bellen
-              </span>
-            </a>
-          </div>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <label className="block">
+                  <span className="block text-sm font-medium text-neutral-300">
+                    Naam
+                  </span>
+                  <input
+                    type="text"
+                    name="naam"
+                    required
+                    placeholder="Jouw naam"
+                    className={FORM_INPUT_CLASSES}
+                    autoComplete="name"
+                  />
+                </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-neutral-300">
+                    E-mail
+                  </span>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="naam@voorbeeld.nl"
+                    className={FORM_INPUT_CLASSES}
+                    autoComplete="email"
+                  />
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="block text-sm font-medium text-neutral-300">
+                  Telefoonnummer
+                </span>
+                <input
+                  type="tel"
+                  name="telefoon"
+                  placeholder="06 12345678"
+                  className={FORM_INPUT_CLASSES}
+                  autoComplete="tel"
+                />
+              </label>
+
+              <div className="grid gap-6 sm:grid-cols-2">
+                <label className="block">
+                  <span className="block text-sm font-medium text-neutral-300">
+                    Behandeling
+                  </span>
+                  <select
+                    name="behandeling"
+                    className={`${FORM_INPUT_CLASSES} cursor-pointer appearance-none bg-[url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")] bg-[length:1.5rem_1.5rem] bg-[right_0.75rem_center] bg-no-repeat pr-12`}
+                    aria-label="Selecteer behandeling"
+                  >
+                    {BEHANDELINGEN.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="block text-sm font-medium text-neutral-300">
+                    Voorkeur dag
+                  </span>
+                  <select
+                    name="dag"
+                    className={`${FORM_INPUT_CLASSES} cursor-pointer appearance-none bg-[url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")] bg-[length:1.5rem_1.5rem] bg-[right_0.75rem_center] bg-no-repeat pr-12`}
+                    aria-label="Selecteer voorkeursdag"
+                  >
+                    {DAGEN.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="block text-sm font-medium text-neutral-300">
+                  Bericht
+                </span>
+                <textarea
+                  name="bericht"
+                  rows={4}
+                  placeholder="Extra wensen of vragen?"
+                  className={`${FORM_INPUT_CLASSES} resize-y min-h-[120px] py-3.5`}
+                  aria-label="Bericht"
+                />
+              </label>
+
+              <div className="flex flex-col gap-6 pt-2 sm:flex-row sm:items-center sm:justify-between">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="order-2 min-h-[48px] w-full rounded-md border border-white/20 bg-white px-6 py-3.5 text-base font-medium text-neutral-950 transition-colors hover:bg-white/95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 disabled:opacity-70 sm:order-1 sm:w-auto"
+                >
+                  {isSubmitting ? "Versturen…" : "Verstuur bericht"}
+                </button>
+                <p className="order-1 text-center text-sm text-neutral-500 sm:order-2">
+                  Of bel/app{" "}
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#25D366] underline underline-offset-2 hover:opacity-90"
+                  >
+                    WhatsApp
+                  </a>{" "}
+                  ·{" "}
+                  <a
+                    href={TEL_URL}
+                    className="text-neutral-400 underline underline-offset-2 hover:text-white"
+                  >
+                    Bellen
+                  </a>
+                </p>
+              </div>
+            </form>
+          )}
         </div>
       </section>
 
