@@ -4,10 +4,12 @@ import { ComingSoonLink } from "./ComingSoonLink";
 const HERO_IMAGE_URL =
   "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1920&q=80";
 
+const TRUST_TEXT = "Gebaseerd op 230+ Google reviews";
+
 export function Hero() {
   return (
     <section
-      className="relative flex min-h-screen w-full flex-col justify-end bg-neutral-950 pb-20 pt-24 md:justify-center md:pb-32 md:pt-28 lg:pb-40 lg:pt-32"
+      className="relative flex min-h-screen w-full flex-col justify-end bg-neutral-950 pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-16 sm:pb-20 sm:pt-20 md:justify-center md:pb-32 md:pt-24 lg:pb-40 lg:pt-28"
       aria-labelledby="hero-heading"
     >
       {/* Background image: full-width, object-cover, centered */}
@@ -22,26 +24,30 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* Content: left-aligned, asymmetric */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 text-left md:px-12 lg:px-16 xl:px-20">
+      {/* Content: left + trust on desktop, stacked on mobile */}
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-12 pl-[max(1.5rem,env(safe-area-inset-left))] pr-[max(1.5rem,env(safe-area-inset-right))] text-left md:flex-row md:items-center md:justify-between md:gap-16 md:px-12 lg:px-16 xl:px-20">
         <div className="max-w-2xl">
           <h1
             id="hero-heading"
             className="font-sans text-4xl font-medium tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl xl:leading-[1.05]"
           >
-            Welkom bij barbershop Heiloo. 
+            Welkom bij barbershop Heiloo.
           </h1>
-          <div
-            className="mt-6 h-px w-20 bg-accent md:mt-8"
-            aria-hidden="true"
-          />
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/90 md:mt-8 md:text-xl">
-          Ambachtelijk barberwerk met aandacht voor elk detail.
-          </p>
-          <p className="mt-4 text-base text-neutral-500 md:text-lg">
+            Ambachtelijk barberwerk met aandacht voor elk detail.
           </p>
 
-          <div className="mt-12 md:mt-16">
+          {/* Trust: compact onder headline op mobiel */}
+          <p
+            className="mt-8 flex items-center gap-2 text-sm tracking-wide text-white/90 md:hidden"
+            aria-label={`${TRUST_TEXT}. 5 van 5 sterren.`}
+          >
+            <span className="text-amber-400">★★★★★</span>
+            {TRUST_TEXT}
+          </p>
+
+          {/* Primary CTA */}
+          <div className="mt-10 md:mt-16">
             <ComingSoonLink
               href="#contact"
               className="group inline-flex items-baseline gap-2 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-neutral-950 md:text-lg"
@@ -52,6 +58,15 @@ export function Hero() {
             </ComingSoonLink>
           </div>
         </div>
+
+        {/* Trust: rechts van content op desktop, visueel in balans */}
+        <p
+          className="hidden text-right text-sm font-medium tracking-wide md:block md:text-base lg:text-[0.95rem]"
+          aria-label={`${TRUST_TEXT}. 5 van 5 sterren.`}
+        >
+          <span className="text-amber-400">★★★★★</span>
+          <span className="mt-1 block text-white/80">{TRUST_TEXT}</span>
+        </p>
       </div>
     </section>
   );

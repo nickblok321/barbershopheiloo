@@ -12,7 +12,7 @@ export function OverOns() {
   return (
     <section
       id="over-ons"
-      className="border-t border-neutral-800/80 px-6 py-28 md:px-12 md:py-32 lg:px-20 lg:py-40"
+      className="border-t border-neutral-800/80 px-6 py-20 sm:py-24 md:px-12 md:py-32 lg:px-20 lg:py-40"
       aria-labelledby="over-ons-heading"
     >
       <div className="mx-auto max-w-6xl">
@@ -47,7 +47,7 @@ export function OverOns() {
               {KERNPUNTEN.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-neutral-500"
+                  className="animate-stagger-item flex items-center gap-3 text-neutral-500"
                 >
                   <span
                     className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent/70"

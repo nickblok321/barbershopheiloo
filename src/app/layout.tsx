@@ -19,6 +19,12 @@ export const metadata: Metadata = {
     "Barbershop Heiloo — professionele kapsalon in Heiloo. Knippen, baardverzorging, trimmen. Met of zonder afspraak. Jarenlange ervaring en persoonlijke aandacht.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover" as const,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

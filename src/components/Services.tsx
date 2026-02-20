@@ -25,7 +25,7 @@ export function Services() {
   return (
     <section
       id="diensten"
-      className="border-t border-neutral-800/80 px-6 py-28 md:px-12 md:py-32 lg:px-20 lg:py-40"
+      className="border-t border-neutral-800/80 px-6 py-20 sm:py-24 md:px-12 md:py-32 lg:px-20 lg:py-40"
       aria-labelledby="diensten-heading"
     >
       <div className="mx-auto max-w-2xl lg:max-w-5xl">
@@ -49,7 +49,7 @@ export function Services() {
             {DIENSTEN.map((dienst) => (
               <li
                 key={dienst.title}
-                className="border-t border-neutral-800/60 py-10 first:border-t-0 sm:py-12 lg:py-16 lg:[&:nth-child(1)]:border-t-0 lg:[&:nth-child(2)]:border-t-0"
+                className="animate-stagger-item border-t border-neutral-800/60 py-10 first:border-t-0 sm:py-12 lg:py-16 lg:[&:nth-child(1)]:border-t-0 lg:[&:nth-child(2)]:border-t-0"
               >
               <h3 className="text-xl font-medium tracking-tight text-white transition-colors duration-200 hover:text-accent sm:text-2xl lg:text-[1.5rem]">
                 {dienst.title}

@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="border-t border-neutral-800/80 px-6 py-16 md:px-12 lg:px-20 lg:py-20">
+    <footer className="border-t border-neutral-800/80 px-6 pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-16 md:px-12 md:pb-20 lg:px-20 lg:py-20">
       <div className="mx-auto max-w-3xl">
         <p className="text-lg font-medium text-white">Barbershop Heiloo</p>
         <p className="mt-2 text-sm text-neutral-500">Heiloo, Nederland</p>

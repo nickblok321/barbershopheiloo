@@ -2,7 +2,7 @@ export function Reviews() {
   return (
     <section
       id="reviews"
-      className="border-t border-neutral-800/80 px-6 py-24 md:px-12 lg:px-20 lg:py-32"
+      className="border-t border-neutral-800/80 px-6 py-20 sm:py-24 md:px-12 lg:px-20 lg:py-32"
       aria-labelledby="reviews-heading"
     >
       <div className="mx-auto max-w-2xl text-center">

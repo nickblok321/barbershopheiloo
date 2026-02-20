@@ -8,7 +8,7 @@ export function Contact() {
     <>
       <section
         id="contact"
-        className="border-t border-neutral-800/80 px-6 py-24 md:px-12 lg:px-20 lg:py-32"
+        className="border-t border-neutral-800/80 px-6 py-20 sm:py-24 md:px-12 lg:px-20 lg:py-32"
         aria-labelledby="contact-heading"
       >
         <div className="mx-auto max-w-2xl text-center">
@@ -18,24 +18,26 @@ export function Contact() {
           >
             Contact & afspraak
           </h2>
-          <div className="mt-4 mx-auto h-px w-16 bg-accent" aria-hidden="true" />
           <p className="mt-6 text-neutral-400">
-            Bel of app ons. We helpen je graag.
+            Bel of app. We helpen je graag.
           </p>
-          <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-5">
+          {/* Primary: WhatsApp. Secondary: Bellen as subtle text link. Mobile: stacked, thumb reach. */}
+          <div className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-8">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-[#25D366] px-8 py-3.5 text-base font-medium text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-neutral-950"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-md bg-[#25D366] px-8 py-3.5 text-base font-medium text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-neutral-950"
             >
               WhatsApp
             </a>
             <a
               href={TEL_URL}
-              className="inline-flex items-center justify-center rounded-md border border-neutral-600 bg-transparent px-8 py-3.5 text-base font-medium text-white transition-colors hover:border-neutral-500 hover:bg-neutral-800/50 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-neutral-950"
+              className="group inline-flex items-baseline text-base font-medium text-neutral-400 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-neutral-950"
             >
-              Bellen
+              <span className="border-b border-neutral-500 pb-0.5 transition-colors group-hover:border-white">
+                Bellen
+              </span>
             </a>
           </div>
         </div>
@@ -46,7 +48,7 @@ export function Contact() {
         href={WHATSAPP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-neutral-950 lg:hidden"
+        className="fixed bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] right-[max(1.5rem,env(safe-area-inset-right,0px))] z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 focus:ring-offset-neutral-950 lg:hidden"
         aria-label="Open WhatsApp"
       >
         <svg

@@ -21,7 +21,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed left-0 right-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300 ${
         scrolled
           ? "bg-black/80 backdrop-blur-md"
           : "bg-transparent"
@@ -29,7 +29,7 @@ export function Navbar() {
       role="banner"
     >
       <nav
-        className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:px-12 lg:px-16"
+        className="mx-auto flex max-w-6xl items-center justify-between pl-[max(1.5rem,env(safe-area-inset-left))] pr-[max(1.5rem,env(safe-area-inset-right))] py-5 md:px-12 lg:px-16"
         aria-label="Hoofdnavigatie"
       >
         <a
@@ -84,12 +84,12 @@ export function Navbar() {
       <div
         id="mobile-menu"
         className={`overflow-hidden transition-all duration-300 md:hidden ${
-          mobileOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          mobileOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
         }`}
         aria-hidden={!mobileOpen}
       >
         <ul
-          className="flex flex-col gap-0 border-t border-neutral-800 bg-black/90 px-6 py-4 backdrop-blur-md"
+          className="flex flex-col gap-0 border-t border-neutral-800 bg-black/90 pl-[max(1.5rem,env(safe-area-inset-left))] pr-[max(1.5rem,env(safe-area-inset-right))] py-4 backdrop-blur-md"
           role="list"
         >
           {LINKS.map(({ href, label }) => (

@@ -11,7 +11,7 @@ export function Pricing() {
   return (
     <section
       id="prijzen"
-      className="border-t border-neutral-800/80 px-6 py-28 md:px-12 md:py-32 lg:px-20 lg:py-32"
+      className="border-t border-neutral-800/80 px-6 py-20 sm:py-24 md:px-12 md:py-32 lg:px-20 lg:py-32"
       aria-labelledby="pricing-heading"
     >
       <div className="mx-auto max-w-2xl">
@@ -37,17 +37,29 @@ export function Pricing() {
           {PRICES.map(({ name, price }) => (
             <li
               key={name}
-              className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8"
+              className="animate-stagger-item grid grid-cols-[1fr_minmax(4.5rem,auto)] items-baseline gap-x-4 gap-y-0.5 sm:flex sm:justify-between sm:gap-8"
             >
-              <span className="text-base font-medium tracking-tight text-neutral-200 sm:text-lg">
+              <span className="min-w-0 text-base font-medium tracking-tight text-neutral-200 sm:text-lg">
                 {name}
               </span>
-              <span className="shrink-0 text-right text-lg font-medium text-white sm:text-xl">
+              <span className="min-w-[4.5rem] text-right text-lg font-medium text-white sm:min-w-0 sm:text-xl">
                 {price}
               </span>
             </li>
           ))}
         </ul>
+
+        {/* Single CTA after prices: high intent. Same style as hero for consistency. */}
+        <p className="mt-14 md:mt-16">
+          <a
+            href="#contact"
+            className="group inline-flex items-baseline text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-neutral-950 md:text-lg"
+          >
+            <span className="border-b border-accent pb-0.5 transition-colors group-hover:border-white">
+              Afspraak maken
+            </span>
+          </a>
+        </p>
       </div>
     </section>
   );
