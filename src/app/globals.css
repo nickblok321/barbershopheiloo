@@ -62,3 +62,12 @@ body {
 [data-visible] .animate-stagger-item:nth-child(4) { animation-delay: 0.32s; }
 [data-visible] .animate-stagger-item:nth-child(5) { animation-delay: 0.4s; }
 [data-visible] .animate-stagger-item:nth-child(6) { animation-delay: 0.48s; }
+
+/* Hide scrollbar while keeping scroll behavior */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

@@ -9,7 +9,7 @@ const TRUST_TEXT = "Gebaseerd op 230+ Google reviews";
 export function Hero() {
   return (
     <section
-      className="relative flex min-h-screen w-full flex-col justify-end bg-neutral-950 pb-[max(4rem,env(safe-area-inset-bottom,0px))] pt-16 sm:pb-20 sm:pt-20 md:justify-center md:pb-32 md:pt-24 lg:pb-40 lg:pt-28"
+      className="relative flex min-h-[min(100dvh,100vh)] w-full flex-col justify-center bg-neutral-950 pb-[max(4rem,env(safe-area-inset-bottom))] pt-[max(3rem,env(safe-area-inset-top))] sm:pb-20 sm:pt-20 md:pb-32 md:pt-24 lg:pb-40 lg:pt-28"
       aria-labelledby="hero-heading"
     >
       {/* Background image: full-width, object-cover, centered */}
